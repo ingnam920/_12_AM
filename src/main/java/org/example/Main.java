@@ -8,6 +8,7 @@ public class Main {
     // to see how IntelliJ IDEA suggests fixing it.
     System.out.printf("새프로젝트 커밋");
     System.out.print("새프로젝트 커밋2");
+    System.out.println("ㄹ자둘ㅈㄷtestg");
 
 
   }
