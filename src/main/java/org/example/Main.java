@@ -9,6 +9,7 @@ public class Main {
     System.out.printf("새프로젝트 커밋");
     System.out.print("새프로젝트 커밋2");
     System.out.println("ㄹ자둘ㅈㄷtestg");
+    System.out.println("weknfwef34");
 
 
   }
