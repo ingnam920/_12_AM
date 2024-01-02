@@ -109,27 +109,30 @@ public class Main {
 
       }
       if (cmd.startsWith("member join")) {
-        Iterator<Member> e = members.listIterator();
-        boolean idpass = false;
 
+        boolean idpass = false;
         String rdate = Util.getNowDate_TimeStr();
         System.out.println("회원가입기능구현");
-        String s1 = null;
+        String s1=null;
 
-        while (!idpass) {
+        while (true) {
+          Iterator<Member> e = members.listIterator();
           System.out.println("id입력하세요");
           s1 = sc.nextLine();
           while (e.hasNext()) {
             Member member = e.next();
-            if (member.getLogid() == s1) {
+            if (member.getLogid().equals(s1)) {
               System.out.println("이미존재하는 id입니다");
+              idpass=true;
+              break;
             }
           }
 
-          if (idpass==false) {
-            break;
+          if (idpass==true) {
+            continue;
           }
 
+          break;
         }
         System.out.println("pwd입력하세요");
         String s2 = sc.nextLine();
@@ -138,6 +141,7 @@ public class Main {
 
 
         members.add(new Member(mem, s1, s2, s3, rdate));
+        System.out.println(members.get(mem-1).toString());
         mem++;
       }
 
@@ -252,6 +256,16 @@ class Member {
     this.regdate = regdate;
   }
 
+  @Override
+  public String toString() {
+    return "Member{" +
+            "id=" + id +
+            ", logid='" + logid + '\'' +
+            ", pwd='" + pwd + '\'' +
+            ", name='" + name + '\'' +
+            ", regdate='" + regdate + '\'' +
+            '}';
+  }
 
   public void setId(int id) {
     this.id = id;
