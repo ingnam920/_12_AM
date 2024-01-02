@@ -7,6 +7,7 @@ import java.util.*;
 public class Main {
 
   static List<Article> articlearr = new ArrayList<Article>();
+  static List<Member> members = new ArrayList<Member>();
 
   public static void main(String[] args) {
     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
@@ -21,6 +22,7 @@ public class Main {
 
     int num = 0;
     int id = 1;
+    int mem = 1;
     while (true) {
       num++;
       System.out.println("명령어");
@@ -104,6 +106,39 @@ public class Main {
 
 
       }
+      if (cmd.startsWith("member join")) {
+        Iterator<Member> e = members.listIterator();
+        boolean idpass = false;
+
+        String rdate = Util.getNowDate_TimeStr();
+        System.out.println("회원가입기능구현");
+        String s1 = null;
+
+        while (!idpass) {
+          System.out.println("id입력하세요");
+          s1 = sc.nextLine();
+          while (e.hasNext()) {
+            Member member = e.next();
+            if (member.getLogid() == s1) {
+              System.out.println("이미존재하는 id입니다");
+            }
+          }
+
+          if (idpass==false) {
+            break;
+          }
+
+        }
+        System.out.println("pwd입력하세요");
+        String s2 = sc.nextLine();
+        System.out.println("이름 입력하세요");
+        String s3 = sc.nextLine();
+
+
+        members.add(new Member(mem, s1, s2, s3, rdate));
+        mem++;
+      }
+
 
     }
     System.out.println("==프로그램 끝==");
@@ -118,6 +153,7 @@ public class Main {
     articlearr.add(new Article(3, "2023", "0205", "철희", "내용3"));
 
   }
+
 }
 
 class Article {
@@ -195,6 +231,65 @@ class Article {
 
   public int getNum() {
     return num;
+  }
+}
+
+class Member {
+  private int id;
+  private String logid;
+  private String pwd;
+  private String name;
+  private String regdate;
+
+  public Member(int id, String logid, String pwd, String name, String regdate) {
+
+    this.id = id;
+    this.logid = logid;
+    this.pwd = pwd;
+    this.name = name;
+    this.regdate = regdate;
+  }
+
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setLogid(String logid) {
+    this.logid = logid;
+  }
+
+  public void setPwd(String pwd) {
+    this.pwd = pwd;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setRegdate(String regdate) {
+    this.regdate = regdate;
+  }
+
+
+  public int getId() {
+    return id;
+  }
+
+  public String getLogid() {
+    return logid;
+  }
+
+  public String getPwd() {
+    return pwd;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getRegdate() {
+    return regdate;
   }
 }
 
