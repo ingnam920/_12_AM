@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.example2.Article;
 import org.example.example2.Member;
 import org.example.example3.Util;
 
@@ -10,14 +11,18 @@ import java.util.Scanner;
 public class MemberController {
 
   private List<Member> members;
+  private Member loginmember = null;
 
   public MemberController(List<Member> members) {
     this.members = members;
+
   }
-  int mem=1;
+
+  int mem = 1;
+  Scanner sc = new Scanner(System.in);
 
   public void dojoin() {
-    Scanner sc=new Scanner(System.in);
+
     boolean idpass = false;
     String rdate = Util.getNowDate_TimeStr();
     System.out.println("회원가입기능구현");
@@ -54,4 +59,58 @@ public class MemberController {
 
   }
 
+  public void dologin() {
+    if (loginmember == null) {
+      System.out.println("로그인기능구현아이디비번입력");
+      String str1 = null;
+      String str2 = null;
+
+      while (true) {
+        boolean log = false;
+        str1 = sc.nextLine();
+        str2 = sc.nextLine();
+        Iterator<Member> e = members.listIterator();
+        while (e.hasNext()) {
+          Member member = e.next();
+          if (member.getLogid().equals(str1) && member.getPwd().equals(str2)) {
+
+            loginmember = member;
+            log = true;
+            break;
+          }
+        }
+        if (!log) {
+          System.out.println("아디비번 다시입력해줘");
+          continue;
+        }
+        else{
+          System.out.println("로그인이되었습니다.");
+          break;
+        }
+      }
+    }
+    System.out.println(loginmember.getName() + "로그인되어있음");
+  }
+
+  public void dologout() {
+    if (loginmember != null) {
+      loginmember = null;
+      System.out.println("로그아웃되었어");
+      return;
+    }
+    System.out.println("로그인안되어있음");
+
+  }
+
+  public void makeTestData() {
+    System.out.println("테스트를 위한 데이터를 생성합니다.");
+
+    members.add(new Member(1, "2021", "0205", "영희", "내용1"));
+    members.add(new Member(2, "2022", "0206", "철수", "내용2"));
+    members.add(new Member(3, "2023", "0207", "철희", "내용3"));
+  }
+
+  public Member getLoginmember() {
+    return loginmember;
+  }
 }

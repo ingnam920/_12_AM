@@ -26,8 +26,10 @@ public class App {
     MemberController memberController = new MemberController(members);
     ArticleController articleController = new ArticleController(articlearr);
     articleController.makeTestData();
+    memberController.makeTestData();
 
-    int num=1;
+
+    int num = 1;
     while (true) {
       num++;
       System.out.println("명령어");
@@ -37,25 +39,31 @@ public class App {
       }
 
       if (cmd.startsWith("article write")) {
-        articleController.dowrite(cmd);
+        if (memberController.getLoginmember() != null) {
+          articleController.dowrite(cmd);
+        }
+        else{
+          System.out.println("로그인상태가 아닙니다.");
+        }
       }
       if (cmd.startsWith("article list")) {
         articleController.dolist(cmd);
       }
-
       if (cmd.startsWith("article detail")) {
         articleController.dodetail(cmd);
       }
       if (cmd.startsWith("article delete")) {
         articleController.dodelete(cmd);
-
-
       }
-      if(cmd.startsWith("member join")){
+      if (cmd.startsWith("member join")) {
         memberController.dojoin();
       }
-
-
+      if (cmd.startsWith("member login")) {
+        memberController.dologin();
+      }
+      if (cmd.startsWith("member logout")) {
+        memberController.dologout();
+      }
     }
     System.out.println("==프로그램 끝==");
   }
