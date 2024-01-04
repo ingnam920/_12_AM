@@ -1,12 +1,12 @@
 package org.example.example2;
 
-public class Member {
+public class Member extends Dto{
 
-  private int id;
+
   private String logid;
   private String pwd;
   private String name;
-  private String regdate;
+
 
   public Member(int id, String logid, String pwd, String name, String regdate) {
 

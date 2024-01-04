@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.controller.ArticleController;
+import org.example.controller.Controller;
 import org.example.controller.MemberController;
 import org.example.example2.Article;
 
@@ -31,6 +32,7 @@ public class App {
 
     int num = 1;
     while (true) {
+
       num++;
       System.out.println("명령어");
       String cmd = sc.nextLine();
@@ -38,13 +40,8 @@ public class App {
         break;
       }
 
-      if (cmd.startsWith("article write")) {
-        if (memberController.getLoginmember() != null) {
-          articleController.dowrite(cmd);
-        }
-        else{
-          System.out.println("로그인상태가 아닙니다.");
-        }
+      if (cmd.startsWith("article write") && Controller.getLoginMember() != null) {
+        articleController.dowrite(cmd);
       }
       if (cmd.startsWith("article list")) {
         articleController.dolist(cmd);
@@ -52,16 +49,19 @@ public class App {
       if (cmd.startsWith("article detail")) {
         articleController.dodetail(cmd);
       }
-      if (cmd.startsWith("article delete")) {
+      if (cmd.startsWith("article delete") && Controller.getLoginMember() != null) {
         articleController.dodelete(cmd);
       }
       if (cmd.startsWith("member join")) {
         memberController.dojoin();
       }
       if (cmd.startsWith("member login")) {
+        if (Controller.getLoginMember() != null) {
+          System.out.println("현재로그인상태입니다.");
+        }
         memberController.dologin();
       }
-      if (cmd.startsWith("member logout")) {
+      if (cmd.startsWith("member logout") && Controller.getLoginMember() != null) {
         memberController.dologout();
       }
     }

@@ -1,33 +1,32 @@
 package org.example.example2;
 
 
-public class Article {
-  private int num;
+public class Article extends Dto{
+
   private String name;
   private String naeyong;
-  private String date;
   private String update;
+  private int loginedId;
   private int good;
 
-  public Article(int num, String date, String update, String name, String naeyong) {
-    this.num = num;
+  public Article(int num, int ld,  String date, String update, String name, String naeyong) {
+    this.id = num;
     this.name = name;
     this.naeyong = naeyong;
-    this.date = date;
+    this.regdate = date;
     this.update = update;
     this.good = 0;
+    this.loginedId=ld;
   }
 
-  public String getName() {
-    return name;
-  }
+
 
   public String getNaeyong() {
     return naeyong;
   }
 
   public String getDate() {
-    return date;
+    return regdate;
   }
 
   public String getUpdate() {
@@ -39,7 +38,7 @@ public class Article {
   }
 
   public void setNum(int num) {
-    this.num = num;
+    this.id = num;
   }
 
   public void setName(String name) {
@@ -51,7 +50,7 @@ public class Article {
   }
 
   public void setDate(String date) {
-    this.date = date;
+    this.regdate = date;
   }
 
   public void setUpdate(String update) {
@@ -65,16 +64,16 @@ public class Article {
   @Override
   public String toString() {
     return "Article{" +
-        "num=" + num +
+        "id=" + id +
         ", name='" + name + '\'' +
         ", naeyong='" + naeyong + '\'' +
-        ", date='" + date + '\'' +
+        ", regdate='" + regdate + '\'' +
         ", update='" + update + '\'' +
         ", good=" + good +
         '}';
   }
 
   public int getNum() {
-    return num;
+    return id;
   }
 }
